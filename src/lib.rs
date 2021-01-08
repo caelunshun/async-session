@@ -49,12 +49,16 @@ pub use anyhow::Error;
 /// An anyhow::Result with default return type of ()
 pub type Result<T = ()> = std::result::Result<T, Error>;
 
+#[cfg(feature = "cookie-store")]
 mod cookie_store;
+#[cfg(feature = "memory-store")]
 mod memory_store;
 mod session;
 mod session_store;
 
+#[cfg(feature = "cookie-store")]
 pub use cookie_store::CookieStore;
+#[cfg(feature = "memory-store")]
 pub use memory_store::MemoryStore;
 pub use session::Session;
 pub use session_store::SessionStore;
